@@ -1,3 +1,8 @@
+<?php
+   session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,21 +18,31 @@
       <h2>Log In</h2>
    </div>
    <form action="registerData.php" method="post">
+      <?php if(isset($_SESSION['error'])): ?>
+         <div class="bg-danger rounded-2">
+            <p>
+               <?php
+                  echo $_SESSION['error'];
+                  unset($_SESSION['error']);
+               ?>
+            </p>
+         </div>
+      <?php endif ?>
       <div class="my-3">
          <label for="">Username</label>
-         <input type="text" name="username" id="" class="form-control">
+         <input type="text" name="username" id="" class="form-control" require>
       </div>
       <div class="my-3">
          <label for="">Email</label>
-         <input type="email" name="email" id="" class="form-control">
+         <input type="email" name="email" id="" class="form-control" require>
       </div>
       <div class="my-3">
          <label for="">Password</label>
-         <input type="password" name="password_1" id="" class="form-control">
+         <input type="password" name="password_1" id="" class="form-control" require>
       </div>
       <div class="my-3">
          <label for="">Confirm Password</label>
-         <input type="password" name="password_2" id="" class="form-control">
+         <input type="password" name="password_2" id="" class="form-control" require>
       </div>
       <button type="submit" class="btn btn-primary" name="reg_user">Register</button>
       <p>Already a member <a href="loginForm.php">Sign In</a></p>

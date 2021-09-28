@@ -1,3 +1,8 @@
+<?php
+   session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,13 +18,23 @@
          <h2>Log In</h2>
       </div>
       <form action="loginData.php" method="post">
+         <?php if(isset($_SESSION['error'])): ?>
+            <div class="bg-danger rounded-2">
+               <p>
+                  <?php
+                     echo $_SESSION['error'];
+                     unset($_SESSION['error']);
+                  ?>
+               </p>
+            </div>
+         <?php endif ?>
          <div class="my-3">
             <label for="">Username</label>
-            <input type="text" name="username" id="" class="form-control">
+            <input type="text" name="username" id="" class="form-control" require>
          </div>
          <div class="my-3">
             <label for="">Password</label>
-            <input type="password" name="password" id="" class="form-control">
+            <input type="password" name="password" id="" class="form-control" require>
          </div>
          <button type="submit" class="btn btn-primary" name="log_user">Log In</button>
          <p>Are you member yet <a href="registerForm.php">Sign Up</a></p>
